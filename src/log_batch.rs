@@ -1116,7 +1116,7 @@ mod tests {
     use super::*;
     use crate::pipe_log::{LogQueue, Version};
     use crate::test_util::{catch_unwind_silent, generate_entries, generate_entry_indexes_opt};
-    use protobuf::parse_from_bytes;
+    use crate::util::parse_from_bytes;
     use raft::eraftpb::Entry;
     use strum::IntoEnumIterator;
 

@@ -8,7 +8,7 @@ use std::thread::{Builder as ThreadBuilder, JoinHandle};
 use std::time::{Duration, Instant};
 
 use log::{error, info};
-use protobuf::{parse_from_bytes, Message};
+use protobuf::Message;
 
 use crate::config::{Config, RecoveryMode};
 use crate::consistency::ConsistencyChecker;
@@ -21,6 +21,7 @@ use crate::memtable::{EntryIndex, MemTableRecoverContextFactory, MemTables};
 use crate::metrics::*;
 use crate::pipe_log::{FileBlockHandle, FileId, LogQueue, PipeLog};
 use crate::purge::{PurgeHook, PurgeManager};
+use crate::util::parse_from_bytes;
 use crate::write_barrier::{WriteBarrier, Writer};
 use crate::{perf_context, Error, GlobalStats, Result};
 

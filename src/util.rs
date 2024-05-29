@@ -347,6 +347,14 @@ pub fn round_down(offset: usize, alignment: usize) -> usize {
     offset / alignment * alignment
 }
 
+/// Parse message from byte array.
+pub fn parse_from_bytes<M: protobuf::Message>(b: &[u8]) -> Result<M, protobuf::ProtobufError> {
+    let mut r: M = protobuf::Message::new();
+    r.merge_from_bytes(b)?;
+    r.check_initialized()?;
+    Ok(r)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
