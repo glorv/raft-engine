@@ -663,7 +663,8 @@ impl LogBatch {
         })();
         for e in entries {
             let buf_offset = self.buf.len();
-            e.write_to_vec(&mut self.buf)?;
+            let data = e.write_to_bytes()?;
+            self.buf.extend_from_slice(&data);
             if self.buf.len() > max_entries_size + LOG_BATCH_HEADER_LEN {
                 self.buf.truncate(old_buf_len);
                 self.buf_state = BufState::Open;
